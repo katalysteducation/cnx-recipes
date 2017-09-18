@@ -14,15 +14,10 @@ fi
 sassBin="$(npm bin)/sass"
 
 # Try running sass locally (using rbenv). If that does not work then try it globally
-if [[ $(${sassBin} --version 2>/dev/null) ]]
+if [[ ! $(${sassBin} --version 2>/dev/null) ]]
 then
-  >&2 echo "INFO: Using ${sassBin}"
-elif [[ $(sass --version 2>/dev/null) ]]
-then
-  >&2 echo "INFO: Using system-installed $(sass --version)"
-  sassBin="sass"
-else
   >&2 echo "ERROR: Could not find sass executable"
+  >&2 echo "INFO: Maybe rerun ./script/setup"
   exit 1
 fi
 
