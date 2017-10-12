@@ -1,7 +1,15 @@
 #!/bin/bash
 set -e
 
-./script/bootstrap
+./script/bootstrap || exit 1
+
+>&2 echo "==> Installing JavaScript Packages"
+if [[ $(which yarn) ]]; then
+  yarn install || exit 1
+else
+  >&2 echo "WARNING: Installing JS packages using npm instead of yarn."
+  npm install || exit 1
+fi
 
 
 # Only activate the virtualenv if not already in one
