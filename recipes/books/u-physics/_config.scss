@@ -1,5 +1,8 @@
 @import '../_common-stuff';
 
+$ENABLED_LANGUAGES: (en, pl);
+$DEFAULT_LANGUAGE: en;
+
 /*==========================================================
   UNIVERSITY PHYSICS PAGES
 ==========================================================*/
@@ -89,24 +92,31 @@
 $_chapterReviewChildPages: (
   (className: "glossary",             clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt", name: (
     en: "Key Terms",
+    pl: "Kluczowe pojęcia",
   )),
   (className: "key-equations", clusterBy: $CLUSTER_NONE,    hasSolutions: false,   name: (
     en: "Key Equations",
+    pl: "Najważniejsze wzory",
   )),
   (className: "key-concepts",              clusterBy: $CLUSTER_SECTION, hasSolutions: false,  name: (
     en: "Summary",
+    pl: "Podsumowanie",
   )),
   (className: "review-conceptual-questions", clusterBy: $CLUSTER_SECTION,    hasSolutions: true,   name: (
     en: "Conceptual Questions",
+    pl: "Pytania",
   )),
   (className: "review-problems",     clusterBy: $CLUSTER_SECTION,    hasSolutions: true,  name: (
     en: "Problems",
+    pl: "Zadania",
   )),
   (className: "review-additional-problems",    clusterBy: $CLUSTER_NONE,    hasSolutions: true,  name: (
     en: "Additional Problems",
+    pl: "Zadania dodatkowe",
   )),
   (className: "review-challenge",             clusterBy: $CLUSTER_NONE,    hasSolutions: true,   name: (
     en: "Challenge Problems",
+    pl: "Zadania trudniejsze",
   )),
 );
 
@@ -114,6 +124,7 @@ $_chapterReviewChildPages: (
 $Config_ChapterCompositePages: (
   (className: "chapter-review", clusterBy: $CLUSTER_NONE, childPages: $_chapterReviewChildPages, hasSolutions:true, name: (
     en: "Chapter Review",
+    pl: "Podsumowanie rozdziału",
   )),
 );
 
@@ -122,28 +133,35 @@ $Config_BookCompositePages: (
   //the composite builder should account for this rather than using hacky syntax
   (className: "solutions",    clusterBy: $CLUSTER_SECTION, compoundComposite: true, moveSolutionsTo: $AREA_EOB, name: (
     en: "Answer Key",
+    pl: "Rozwiązania zadań",
   )),
   (className: "index",        clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX, name: (
     en: "Index",
+    pl: "Skorowidz rzeczowy",
   )),
 );
 /*==========================================================
   UNIVERSITY PHYSICS TITLING CONTENT
 ==========================================================*/
 $_exampleTitleContent        : (
-  en: (os-title-label: "Example ", os-number: counter(chapter) "." counter(example), os-divider: " "),
+  en: (os-title-label: "Example ",  os-number: counter(chapter) "." counter(example), os-divider: " "),
+  pl: (os-title-label: "Przykład ", os-number: counter(chapter) "." counter(example), os-divider: " "),
 );
 $_exampleSolutionTitleContent: (
-  en: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example), os-divider: " "),
+  en: (os-title-label: "Solution ",     os-number: counter(chapter) "." counter(example), os-divider: " "),
+  pl: (os-title-label: "Rozwiązanie ",  os-number: counter(chapter) "." counter(example), os-divider: " "),
 );
 $_equationTitleContent       : (
   en: (os-number: "(" counter(chapter) "." counter(equation) ")"),
+  pl: (os-number: "(" counter(chapter) "." counter(equation) ")"),
 );
 $_understandingTitleContent   : (
   en: (os-title-label: "Check Your Understanding ", os-number: counter(chapter)"."counter(understanding), os-divider: " "),
+  pl: (os-title-label: "Sprawdź, czy rozumiesz ",   os-number: counter(chapter)"."counter(understanding), os-divider: " "),
 );
 $_understandingSolutionContent : (
   en: (os-number: counter(chapter)"."counter(understanding)),
+  pl: (os-number: counter(chapter)"."counter(understanding)),
 );
 /*==========================================================
   UNIVERSITY PHYSICS CONFIG
@@ -190,6 +208,7 @@ $Config_Notes: (
   (className: 'check-understanding',     moveSolutionTo: $AREA_NONE, counterName: understanding, titleContent: $_understandingTitleContent, hasSolutions: true, solutionTitleContent: $_understandingSolutionContent),
   (className: 'media-2',    moveSolutionTo: $AREA_NONE,  labelText: (
     en: "Interactive",
+    pl: "Interaktywne",
   )),
   (className: 'problem-solving',    moveSolutionTo: $AREA_NONE, useHeader: true),
 );
@@ -200,12 +219,14 @@ $Config_UnnumberedExercises: (
 
 $Config_abstractTitle: (
   en: "Learning Objectives",
+  pl: "Cel dydaktyczny",
 );
 $Config_PartType_Exercise: (moveTo: $AREA_EOC, resetAt: $RESET_CHAPTER, numberAt: $NUMBER_BEFORE_MOVE, titleContent: (os-divider: ".", os-number: counter(exercise)));
 $Config_PartType_Example:  (moveTo: $AREA_NONE,                          titleContent: $_exampleTitleContent,
                                                                   solutionTitleContent: $_exampleSolutionTitleContent);
 $Config_PartType_Chapter:  (outlineTitle: (
   en: 'Chapter Outline',
+  pl: 'Treść rozdziału',
 ));
 $Config_PartType_Equation: (moveTo: $AREA_NONE, titleContent: $_equationTitleContent, numberAt: $NUMBER_BEFORE_MOVE, numberAfterEq: true);
 $Config_PartType_Solution: (moveTo: $AREA_NONE, );
