@@ -5,7 +5,7 @@
 /// @group compose
 @mixin compose_titleEOCComposites($compositePages) {
   @each $page in $compositePages {
-    $name: map-get($page, name);
+    $name: _(map-get($page, name));
     $className: map-get($page, className);
 
     // Validate
@@ -26,7 +26,7 @@
 /// @group compose
 @mixin compose_titleEOBComposites($compositePages) {
   @each $page in $compositePages {
-    $name: map-get($page, name);
+    $name: _(map-get($page, name));
     $className: map-get($page, className);
 
     // Validate
@@ -183,7 +183,7 @@
       &::after {
         container: h3;
         data-type: "title";
-        content: $pageName;
+        content: _($pageName);
         move-to: #{$className}-title;
       }
 
@@ -449,7 +449,7 @@
     @if $hasSolutions {
       $noteTitle: 'Null Title';
       $noteLabelText: map-get($note, labelText);
-      $noteTitleContent: map-get($note, titleContent);
+      $noteTitleContent: _(map-get($note, titleContent));
       @if $noteLabelText {
         $noteTitle: $noteLabelText;
       }
@@ -462,7 +462,7 @@
       @include validate_type($noteTitle, string);
       @include validate_type($className, string);
 
-    
+
       [data-type="chapter"] {
         [data-type="note"].#{$className} [data-type="solution"] {
           move-to: note-#{$className}-#{$solutionClassName}-GETSECTION;
@@ -491,8 +491,8 @@
   @each $page in $compositePages {
     $hasSolutions: map-get($page, hasSolutions);
     $className: map-get($page, className);
-    $pageName: map-get($page, name);
-    
+    $pageName: _(map-get($page, name));
+
     $childPages: map-get($page, childPages);
 
     // Validate
@@ -508,7 +508,7 @@
               @each $child in $childPages {
                 $cHasSolutions: map-get($child, hasSolutions);
                 $cClassName: map-get($child, className);
-                $cPageName: map-get($child, name);
+                $cPageName: _(map-get($child, name));
 
                 // Validate
                 @include validate_typeOptional($cHasSolutions, bool);
