@@ -1,0 +1,72 @@
+$ENABLED_LANGUAGES: (en) !default;
+$DEFAULT_LANGUAGE: en !default;
+
+$language: null !global;
+
+/// Execute @content once for every enabled language. Code within @content block
+/// has access to global $language variable.
+///
+///   $ENABLED_LANGUAGES: (en, de);
+///   $hello: (en: "Hello", de: "Hallo");
+///
+///   @include localize() {
+///     span { content: _($hello); }
+///   }
+///
+/// will generate
+///
+///   :lang(en) span { content: "Hello"; }
+///   :lang(de) span { content: "Hallo"; }
+@mixin localize() {
+  @include with_language() {
+    :lang(#{$language}) {
+      @content;
+    }
+  }
+}
+
+/// Like localize, except does not prefix with :lang.
+///
+///   $ENABLED_LANGUAGES: (en, de);
+///   $hello: (en: "Hello", de: "Hallo");
+///
+///   @include with_language() {
+///     span:lang(#{$language}) { content: _($hello); }
+///   }
+///
+/// will generate
+///
+///   span:lang(en) { content: "Hello"; }
+///   span:lang(de) { content: "Hallo"; }
+@mixin with_language() {
+  $old_language: $language;
+
+  @each $lang in $ENABLED_LANGUAGES {
+    $language: $lang !global;
+    @content
+  }
+
+  $language: $old_language !global;
+}
+
+@function _($key) {
+  @if type-of($key) == 'null' {
+    @return null;
+  } @else if type-of($key) == string {
+    @warn "Raw string passed to _()";
+    @return $key;
+  } @else if type-of($key) != map {
+    @error "Key must be a map, not #{type-of($key)}";
+  } @else if $language != null {
+    @if map-has-key($key, $language) {
+      @return map-get($key, $language);
+    } @else if map-has-key($key, $DEFAULT_LANGUAGE) {
+      @warn "Key is undefined in current locale (#{$language}), default locale (#{$DEFAULT_LANGUAGE}) used";
+      @return map-get($key, $DEFAULT_LANGUAGE);
+    } @else {
+      @error "Key is undefined in current locale (#{$language}), key: #{map-keys($key)}";
+    }
+  } @else {
+    @error "$language is not set";
+  }
+}
