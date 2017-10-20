@@ -46,6 +46,20 @@ $Config_UnnumberedEquations: ();
 
 $Config_addSolutionHeader: ();
 
+$PL_EXERCISE: (nominative: "Ćwiczenie", genitive: "Ćwiczenia",  dative: "Ćwiczeniu",    accusative: "Ćwiczenie",  instrumental: "Ćwiczeniem", locative: "Ćwiczeniu",    vocative: "Ćwiczenie");
+$PL_TABLE:    (nominative: "Tabela",    genitive: "Tabeli",     dative: "Tabeli",       accusative: "Tabelę",     instrumental: "Tabelą",     locative: "Tabeli",       vocative: "Tabelo");
+$PL_EXAMPLE:  (nominative: "Przykład",  genitive: "Przykładu",  dative: "Przykładowi",  accusative: "Przykład",   instrumental: "Przykładem", locative: "Przykładzie",  vocative: "Przykładzie");
+$PL_EQUATION: (nominative: "Równanie",  genitive: "Równania",   dative: "Równaniu",     accusative: "Równanie",   instrumental: "Równaniem",  locative: "Równaniu",     vocative: "Równanie");
+$PL_FIGURE:   (nominative: "Rysunek",   genitive: "Rysunku",    dative: "Rysunkowi",    accusative: "Rysunek",    instrumental: "Rysunkiem",  locative: "Rysunku",      vocative: "Rysunku");
+
+@function case_prefixed($cases, $content, $separator: null) {
+  $result: ();
+  @each $case, $prefix in $cases {
+    $result: map-merge($result, ($case: $prefix $separator $content));
+  }
+  @return $result;
+}
+
 //If this method of setting the content of the label explicity becomes a problem,
 //try grabbing the numbering information from the element's header
 
@@ -55,29 +69,38 @@ $Config_addSolutionHeader: ();
 $Config_TargetLabels: (
   (selector: '.os-eoc [data-type="exercise"]',                                  labelText: (
     en: "Exercise " counter(chapter) "." counter(exercise),
+    pl: case_prefixed($PL_EXERCISE, counter(chapter) "." counter(exercise), " "),
   )),
   (selector: 'div[data-type="chapter"] [data-type="example"]',                  labelText: (
     en: "Example " counter(chapter) "." counter(example),
+    pl: case_prefixed($PL_EXAMPLE, counter(chapter) "." counter(example), " "),
   )),
   (selector: 'div[data-type="chapter"] [data-type="equation"]:not(.unnumbered)',labelText: (
     en: "Equation " counter(chapter) "." counter(equation),
+    pl: case_prefixed($PL_EQUATION, counter(chapter) "." counter(equation), " "),
   )),
   (selector: '[data-type="chapter"] :not(table) > table:not(.unnumbered)',      labelText: (
     en: "Table " counter(chapter) "." counter(table),
+    pl: case_prefixed($PL_TABLE, counter(chapter) "." counter(table), " "),
   )),
   (selector: '[data-type="chapter"] :not(figure) > figure:not(.unnumbered)',    labelText: (
     en: "Figure " counter(chapter) "." counter(figure),
+    pl: case_prefixed($PL_FIGURE, counter(chapter) "." counter(figure), " "),
   )),
   (selector: '.appendix :not(table) > table:not(.unnumbered)',                  labelText: (
     en: "Table " counter(appendix, upper-alpha) counter(table),
+    pl: case_prefixed($PL_TABLE, counter(appendix, upper-alpha) counter(table), " "),
   )),
   (selector: '.appendix :not(figure) > figure:not(.unnumbered)',                labelText: (
     en: "Figure " counter(appendix, upper-alpha) counter(figure),
+    pl: case_prefixed($PL_FIGURE, counter(appendix, upper-alpha) counter(figure), " "),
   )),
   (selector: '.appendix > table:not(.unnumbered)',                              labelText: (
     en: "Table " counter(appendix, upper-alpha) counter(table),
+    pl: case_prefixed($PL_TABLE, counter(appendix, upper-alpha) counter(table), " "),
   )),
   (selector: '.appendix > figure:not(.unnumbered)',                             labelText: (
     en: "Figure " counter(appendix, upper-alpha) counter(figure),
+    pl: case_prefixed($PL_FIGURE, counter(appendix, upper-alpha) counter(figure), " "),
   )),
 );
