@@ -11,7 +11,8 @@ then
 fi
 
 
-sassBin="$(npm bin)/sass"
+sassBin="$(npm bin)/node-sass"
+outputDir="./recipes/output/"
 
 # Try running sass locally (using rbenv). If that does not work then try it globally
 if [[ ! $(${sassBin} --version 2>/dev/null) ]]
@@ -26,11 +27,19 @@ for recipeName in "${RECIPE_NAMES[@]}"
 do
 
   sassFile="./recipes/books/${recipeName}/book.scss"
-  cssFile="./recipes/output/${recipeName}.css"
+  inputSassFile="./recipes/books/${recipeName}/${recipeName}.scss"
 
-  >&2 echo "==> Generating ${cssFile}"
+  >&2 echo "==> Generating ${outputDir}/${recipeName}.css"
 
-  ${sassBin} ${sassFile} > ${cssFile} || exit 1
+  # Node-sass accepts an output DIRECTORY, rather than an output FILE
+  # so, in order to support sourcemaps, we have to temporarily
+  # rename book.scss to be ap-physics.scss .
+  if [[ -f "${inputSassFile}" ]]; then
+    rm "${inputSassFile}" || exit 1
+  fi
+  cp "${sassFile}" "${inputSassFile}" || exit 1
+  ${sassBin} --source-map true ${inputSassFile} --output ${outputDir} || exit 1
+  rm "${inputSassFile}"
 done
 
 ./script/build-manifest

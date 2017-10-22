@@ -6,8 +6,7 @@ bakedOrPreparedSuffix=$2 # Overridden when running ./diff-guide-prepare
 sassDir='./recipes/'
 styleguideDir="./styleguide/${recipeName}"
 sassFile="${sassDir}/books/${recipeName}/book.scss"
-cssFile="${styleguideDir}/guide.css"
-bookCssFile="${sassDir}/output/${recipeName}.css"
+outputDir="${styleguideDir}"
 guideHomepageFile="./guide-homepage.md" # Relative to ${sassDir}/recipes/
 
 tempDir="./tmp/"
@@ -15,7 +14,7 @@ tempRecipeDir="${tempDir}/${recipeName}/"
 bookDocumentationDir="./recipes/books/${recipeName}"
 kssOutputFile="${tempDir}/kss-output.txt"
 
-sassBin="$(npm bin)/sass"
+sassBin="$(npm bin)/node-sass"
 
 # Check command line args
 
@@ -40,8 +39,18 @@ then
 fi
 
 
-${sassBin} ${sassFile} > ${cssFile} || exit 1
-${sassBin} ${sassFile} > ${bookCssFile} || exit 1
+
+inputSassFile="./recipes/books/${recipeName}/guide.scss"
+
+# Node-sass accepts an output DIRECTORY, rather than an output FILE
+# so, in order to support sourcemaps, we have to temporarily
+# rename book.scss to be ap-physics.scss .
+if [[ -f "${inputSassFile}" ]]; then
+  rm "${inputSassFile}" || exit 1
+fi
+cp "${sassFile}" "${inputSassFile}" || exit 1
+${sassBin} --source-map true ${inputSassFile} --output ${outputDir} || exit 1
+rm "${inputSassFile}"
 
 
 >&2 echo "==> Generating the baked example HTML files"
