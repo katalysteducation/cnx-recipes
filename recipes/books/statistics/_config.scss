@@ -77,19 +77,19 @@ Formula Review page
   Style guide: book.composite.solutions
 */
 $Config_ChapterCompositePages: (
-  (className: "glossary",                 clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt",    name: "Key Terms"),
-  (className: "summary",                  clusterBy: $CLUSTER_SECTION,                               name: "Chapter Review"),
-  (className: "formula-review",           clusterBy: $CLUSTER_SECTION,                               name: "Formula Review"),
-  (className: "practice",                 clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: "Practice"),
-  (className: "bring-together-exercises", clusterBy: $CLUSTER_NONE,    hasSolutions: true,           name: "Bringing It Together: Practice"),
-  (className: "free-response",            clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: "Homework"),
-  (className: "bring-together-homework",  clusterBy: $CLUSTER_NONE,    hasSolutions: true,           name: "Bringing It Together: Homework"),
-  (className: "references",               clusterBy: $CLUSTER_SECTION,                               name: "References"),
-  (className: "solutions",                clusterBy: $CLUSTER_NONE, compoundComposite: true, moveSolutionsTo: $AREA_EOC,  name: "Solutions"),
+  (className: "glossary",                 clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt",    name: (en: "Key Terms")),
+  (className: "summary",                  clusterBy: $CLUSTER_SECTION,                               name: (en: "Chapter Review")),
+  (className: "formula-review",           clusterBy: $CLUSTER_SECTION,                               name: (en: "Formula Review")),
+  (className: "practice",                 clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: (en: "Practice")),
+  (className: "bring-together-exercises", clusterBy: $CLUSTER_NONE,    hasSolutions: true,           name: (en: "Bringing It Together: Practice")),
+  (className: "free-response",            clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: (en: "Homework")),
+  (className: "bring-together-homework",  clusterBy: $CLUSTER_NONE,    hasSolutions: true,           name: (en: "Bringing It Together: Homework")),
+  (className: "references",               clusterBy: $CLUSTER_SECTION,                               name: (en: "References")),
+  (className: "solutions",                clusterBy: $CLUSTER_NONE, compoundComposite: true, moveSolutionsTo: $AREA_EOC,  name: (en: "Solutions")),
 );
 
 $Config_BookCompositePages: (
-  (className: "index",                    clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX,    name: "Index"),
+  (className: "index",                    clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX,    name: (en: "Index")),
   //This doesn't get parsed as a list without a comma at the end
   //the composite builder should account for this rather than using hacky syntax
 );
@@ -100,11 +100,11 @@ $Config_BookCompositePages: (
 //when they need to be able to be in any order because of possible changes in titling order between books
 //Usage Note: key: class of the containing span, value: text that will go inside span
 // Drat, the order of os-title-label, os-number, os-divider matters ;(
-$_exerciseTitleContent       : (os-divider: ".", os-number: counter(exercise) );
-$_exampleTitleContent        : (os-title-label: "Example ", os-number: counter(chapter) "." counter(example), os-divider: " ");
-$_exampleSolutionTitleContent: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example), os-divider: " ");
-$_labTitleContent           : (os-title-label: "Stats Lab ", os-number: counter(chapter) "." counter(lab));
-$_tryTitleContent            : (os-title-label: "Try It ", os-number: counter(chapter) "." counter(example)); // Try it notes are numbered based on the example preceeding them
+$_exerciseTitleContent       : (en: (os-divider: ".", os-number: counter(exercise) ));
+$_exampleTitleContent        : (en: (os-title-label: "Example ", os-number: counter(chapter) "." counter(example), os-divider: " "));
+$_exampleSolutionTitleContent: (en: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example), os-divider: " "));
+$_labTitleContent           : (en: (os-title-label: "Stats Lab ", os-number: counter(chapter) "." counter(lab)));
+$_tryTitleContent            : (en: (os-title-label: "Try It ", os-number: counter(chapter) "." counter(example))); // Try it notes are numbered based on the example preceeding them
 
 
 /*==========================================================
@@ -119,7 +119,7 @@ $Config_SetFigureCaption           : (captionType: $CAPTION_FIGURE, defaultConta
 //otherwise, the increment and the counter() call may fire in the wrong order
 //This may be fixed in a later version of easybake
 $Config_TargetLabels: append($Config_TargetLabels,
-  (selector: 'div[data-type="chapter"] .try', labelText: "Try It")
+  (selector: 'div[data-type="chapter"] .try', labelText: (en: "Try It"))
 );
 
 /*
@@ -168,10 +168,10 @@ $Config_TargetLabels: append($Config_TargetLabels,
   Style guide: page.note.collab
 */
 $Config_Notes: (
-  (className: 'calculator', moveSolutionTo: $AREA_NONE,  labelText: "Using the TI-83, 83+, 84, 84+ Calculator"),
+  (className: 'calculator', moveSolutionTo: $AREA_NONE,  labelText: (en: "Using the TI-83, 83+, 84, 84+ Calculator")),
   (className: 'lab',        moveSolutionTo: $AREA_NONE,  counterName: lab,  titleContent: $_labTitleContent),
-  (className: 'collab',     moveSolutionTo: $AREA_NONE,  labelText: "Collaborative Exercise", replaceHeader: true),
-  (className: 'chapter-objectives', moveSolutionTo: $AREA_NONE,  labelText: "Chapter Objectives", replaceHeader: true),
+  (className: 'collab',     moveSolutionTo: $AREA_NONE,  labelText: (en: "Collaborative Exercise"), replaceHeader: true),
+  (className: 'chapter-objectives', moveSolutionTo: $AREA_NONE,  labelText: (en: "Chapter Objectives"), replaceHeader: true),
   (className: 'try',        moveSolutionTo: $AREA_TRASH, counterName: Try, titleContent: $_tryTitleContent), // try it notes are numbered based on the example preceeding them
 );
 

@@ -1,7 +1,7 @@
 @import '../physics/_config';
 
 // This is slightly different than physics so it is redefined here.
-$_equationTitleContent: (os-divider: " ", os-number: counter(chapter) "." counter(equation)); // TODO: Make this the same as ap-physics
+$_equationTitleContent: (en: (os-divider: " ", os-number: counter(chapter) "." counter(equation))); // TODO: Make this the same as ap-physics
 
 // Add in the solutions
 $PhysicsPageConceptualQuestions: map-merge($PhysicsPageConceptualQuestions, (hasSolutions: true));
@@ -21,10 +21,10 @@ $Config_ChapterCompositePages: (
   $PhysicsPageSummary,
   $PhysicsPageConceptualQuestions,
   $PhysicsPageProblems,
-  (className: "ap-test-prep", clusterBy: $CLUSTER_SECTION, hasSolutions: true, name: "Test Prep for AP® Courses"),
+  (className: "ap-test-prep", clusterBy: $CLUSTER_SECTION, hasSolutions: true, name: (en: "Test Prep for AP® Courses")),
 );
 $Config_BookCompositePages: (
-  (className: "solutions",  clusterBy: $CLUSTER_CHAPTER, compoundComposite: true, moveSolutionsTo: $AREA_EOB, name: "Answer Key"),
+  (className: "solutions",  clusterBy: $CLUSTER_CHAPTER, compoundComposite: true, moveSolutionsTo: $AREA_EOB, name: (en: "Answer Key")),
   $PhysicsPageIndex,
 );
 
@@ -51,7 +51,7 @@ $Config_UnnumberedEquations: (
   (contextSelector: 'section.section-summary', childSelector: '[data-type="equation"]'),
 );
 
-$Config_PartType_Chapter:  (outlineTitle: 'Chapter Outline');
+$Config_PartType_Chapter:  (outlineTitle: (en: 'Chapter Outline'));
 $Config_PartType_Equation: (moveTo: $AREA_NONE, numberAt: $NUMBER_AFTER_MOVE, titleContent: $_equationTitleContent);
 $Config_PartType_Exercise: (moveTo: $AREA_EOC, resetAt: $RESET_COMPOSITE_PAGE,  numberAt: $NUMBER_BEFORE_MOVE, titleContent: $_exerciseTitleContent);
 $Config_PartType_Example:  (moveTo: $AREA_NONE, titleContent: $_exampleTitleContent,
@@ -59,7 +59,7 @@ $Config_PartType_Example:  (moveTo: $AREA_NONE, titleContent: $_exampleTitleCont
 $Config_PartType_Solution: (moveTo: $AREA_NONE);
 
 $Config_HACK_modifyAnyContainerTitleSelector: '[data-element-type="check-understanding"]';
-$Config_addSolutionHeader: ((selector: '[data-element-type="check-understanding"]', title: 'Solution'),);
+$Config_addSolutionHeader: ((selector: '[data-element-type="check-understanding"]', title: (en: 'Solution')),);
 
 
 // Coverage optimizations

@@ -13,22 +13,22 @@
 // They are local vars that are used below.
 // NOTE: The order of each value matters; it is the order in which these
 // elements will occur in the generated text.
-$_exerciseTitleContent       : (os-divider: ".", os-number: counter(exercise));
-$_exampleTitleContent        : (os-title-label: "Example ", os-number: counter(chapter) "." counter(example));
-$_exampleSolutionTitleContent: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example));
-$_tryTitleContent            : (os-title-label: "Try It ", os-number: counter(chapter) "." counter(example)); // try it notes are numbered based on the example preceeding them
-$_equationNumber             : (os-title-label: "Eqn", os-number: counter(equation));
+$_exerciseTitleContent       : (en: (os-divider: ".", os-number: counter(exercise)));
+$_exampleTitleContent        : (en: (os-title-label: "Example ", os-number: counter(chapter) "." counter(example)));
+$_exampleSolutionTitleContent: (en: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example)));
+$_tryTitleContent            : (en: (os-title-label: "Try It ", os-number: counter(chapter) "." counter(example)); // try it notes are numbered based on the example preceeding the)m
+$_equationNumber             : (en: (os-title-label: "Eqn", os-number: counter(equation)));
 
 // The following are defined in _common-stuff.scss because they do not change
 // but are here for completeness.
 // TODO: Maybe they should be moved to $Config_PartType_* for consistency instead of being separate vars
-$Config_PartType_Chapter_TitleContent   : (os-number: counter(chapter), os-divider: ' ');
-$Config_PartType_Appendix_TitleContent  : (os-title-label: "Appendix ", os-number: counter(appendix, upper-alpha), os-divider: ' ');
-$Config_PartType_Section_TitleContent   : (os-number: counter(chapter) "." counter(section), os-divider: ' ');
-$Config_PartType_Table_CaptionContent   : (os-title-label: "Table ", os-number: counter(chapter) "." counter(table));
-$Config_PartType_Table_CaptionContentAp : (os-title-label: "Table ", os-number: counter(appendix, upper-alpha) "." counter(table));
-$Config_PartType_Figure_CaptionContent  : (os-title-label: "Figure ", os-number: counter(chapter) "." counter(figure));
-$Config_PartType_Figure_CaptionContentAp: (os-title-label: "Figure ", os-number: counter(appendix, upper-alpha) "." counter(figure));
+$Config_PartType_Chapter_TitleContent   : (en: (os-number: counter(chapter), os-divider: ' '));
+$Config_PartType_Appendix_TitleContent  : (en: (os-title-label: "Appendix ", os-number: counter(appendix, upper-alpha), os-divider: ' '));
+$Config_PartType_Section_TitleContent   : (en: (os-number: counter(chapter) "." counter(section), os-divider: ' '));
+$Config_PartType_Table_CaptionContent   : (en: (os-title-label: "Table ", os-number: counter(chapter) "." counter(table)));
+$Config_PartType_Table_CaptionContentAp : (en: (os-title-label: "Table ", os-number: counter(appendix, upper-alpha) "." counter(table)));
+$Config_PartType_Figure_CaptionContent  : (en: (os-title-label: "Figure ", os-number: counter(chapter) "." counter(figure)));
+$Config_PartType_Figure_CaptionContentAp: (en: (os-title-label: "Figure ", os-number: counter(appendix, upper-alpha) "." counter(figure)));
 
 
 // ==========================================================
@@ -50,9 +50,9 @@ $Config_PartType_Figure_CaptionContentAp: (os-title-label: "Figure ", os-number:
 // by having it above the `$Config_ChapterCompositePages` helps make this area
 // more readable (since it sort of looks like a table).
 $_compoundTestPrep: (
-  (className: "multiple-choice",   clusterBy: $CLUSTER_SECTION, name: "Multiple Choice"),
-  (className: "short-answer",      clusterBy: $CLUSTER_SECTION, name: "Short Answer"),
-  (className: "extended-response", clusterBy: $CLUSTER_SECTION, name: "Extended Response"),
+  (className: "multiple-choice",   clusterBy: $CLUSTER_SECTION, name: (en: "Multiple Choice")),
+  (className: "short-answer",      clusterBy: $CLUSTER_SECTION, name: (en: "Short Answer")),
+  (className: "extended-response", clusterBy: $CLUSTER_SECTION, name: (en: "Extended Response")),
 );
 // See below for where this variable is used
 
@@ -71,22 +71,22 @@ $_compoundTestPrep: (
   Style guide: book.composite.practice
 */
 $Config_ChapterCompositePages: (
-  (className: "glossary",        specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt",   name: "Key Terms"),
-  (className: "summary",         clusterBy: $CLUSTER_SECTION,                               name: "Chapter Review"),
-  (className: "formula-review",  clusterBy: $CLUSTER_SECTION,                               name: "Formula Review"),
-  (className: "practice",        clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: "Practice"),
-  (className: "bring-together-exercises",                hasSolutions: true,           name: "Bringing It Together: Exercises"),
-  (className: "free-response",   clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: "Homework"),
-  (className: "bring-together-homework",                 hasSolutions: true,           name: "Bringing It Together: Homework"),
-  (className: "references",      clusterBy: $CLUSTER_SECTION,                               name: "References"),
-  (className: "solutions",       compoundComposite: true, moveSolutionsTo: $AREA_EOC,  name: "Solutions"),
+  (className: "glossary",        specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt",   name: (en: "Key Terms")),
+  (className: "summary",         clusterBy: $CLUSTER_SECTION,                               name: (en: "Chapter Review")),
+  (className: "formula-review",  clusterBy: $CLUSTER_SECTION,                               name: (en: "Formula Review")),
+  (className: "practice",        clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: (en: "Practice")),
+  (className: "bring-together-exercises",                hasSolutions: true,           name: (en: "Bringing It Together: Exercises")),
+  (className: "free-response",   clusterBy: $CLUSTER_SECTION, hasSolutions: true,           name: (en: "Homework")),
+  (className: "bring-together-homework",                 hasSolutions: true,           name: (en: "Bringing It Together: Homework")),
+  (className: "references",      clusterBy: $CLUSTER_SECTION,                               name: (en: "References")),
+  (className: "solutions",       compoundComposite: true, moveSolutionsTo: $AREA_EOC,  name: (en: "Solutions")),
 
   // These are compoundComposite pages
-  (className: "test-prep", childPages: $_compoundTestPrep, name: "Test Prep" ),
+  (className: "test-prep", childPages: $_compoundTestPrep, name: (en: "Test Prep")),
 );
 
 $Config_BookCompositePages: (
-  (className: "index",           specialPageType: $PAGE_INDEX,                              name: "Index"),
+  (className: "index",           specialPageType: $PAGE_INDEX,                              name: (en: "Index")),
 );
 
 
@@ -107,18 +107,18 @@ $Config_SetFigureCaption: (captionType: $CAPTION_FIGURE, defaultContainer: figca
 // ==========================================================
 
 $Config_TargetLabels: (
-  (selector: '.os-eoc [data-type="exercise"]',               labelText: "Exercise " counter(chapter) "." counter(exercise)),
-  (selector: '[data-type="chapter"] [data-type="example"]',  labelText: "Example "  counter(chapter) "." counter(example)),
-  (selector: '[data-type="chapter"] :not(table) > table',    labelText: "Table "    counter(chapter) "." counter(table)),
-  (selector: '[data-type="chapter"] :not(figure) > figure',  labelText: "Figure "   counter(chapter) "." counter(figure)),
-  (selector: '[data-type="appendix"] :not(table) > table',   labelText: "Table " counter(appendix, upper-alpha) "." counter(table)),
-  (selector: '[data-type="appendix"] :not(figure) > figure', labelText: "Figure " counter(appendix, upper-alpha) "." counter(figure)),
+  (selector: '.os-eoc [data-type="exercise"]',               labelText: (en: "Exercise " counter(chapter) "." counter(exercise))),
+  (selector: '[data-type="chapter"] [data-type="example"]',  labelText: (en: "Example "  counter(chapter) "." counter(example))),
+  (selector: '[data-type="chapter"] :not(table) > table',    labelText: (en: "Table "    counter(chapter) "." counter(table))),
+  (selector: '[data-type="chapter"] :not(figure) > figure',  labelText: (en: "Figure "   counter(chapter) "." counter(figure))),
+  (selector: '[data-type="appendix"] :not(table) > table',   labelText: (en: "Table " counter(appendix, upper-alpha) "." counter(table))),
+  (selector: '[data-type="appendix"] :not(figure) > figure', labelText: (en: "Figure " counter(appendix, upper-alpha) "." counter(figure))),
 );
 
 // This is what you would most likely write if you need to add a custom link
 // TODO: Make this something like [data-type="note"] { content: target-string(attr(href), title)}
 $Config_TargetLabels: append( $Config_TargetLabels,
-  (selector: '[data-type="note"].try', labelText: "Try It")
+  (selector: '[data-type="note"].try', labelText: (en: "Try It"))
 );
 
 
@@ -127,8 +127,8 @@ $Config_TargetLabels: append( $Config_TargetLabels,
 // ==========================================================
 
 $Config_Notes: (
-  (className: 'try',        moveSolutionTo: $AREA_TRASH, counterName: "Try", titleContent: $_tryTitleContent),
-  (className: 'calculator', moveSolutionTo: $AREA_NONE,  labelText: "Using the TI-83, 83+, 84, 84+ Calculator"),
+  (className: 'try',        moveSolutionTo: $AREA_TRASH, counterName: (en: "Try"), titleContent: $_tryTitleContent),
+  (className: 'calculator', moveSolutionTo: $AREA_NONE,  labelText: (en: "Using the TI-83, 83+, 84, 84+ Calculator")),
 );
 
 $Config_UnnumberedExercises: (
@@ -144,7 +144,7 @@ $Config_UnnumberedExercises: (
 $Config_PartType_Exercise: (moveTo: $AREA_EOC, resetAt: $RESET_CHAPTER,  numberAt: $NUMBER_BEFORE_MOVE, titleContent: $_exerciseTitleContent);
 $Config_PartType_Example:  (moveTo: $AREA_NONE,                          titleContent: $_exampleTitleContent,
                                                                   solutionTitleContent: $_exampleSolutionTitleContent);
-$Config_PartType_Chapter:  (outlineTitle: 'Chapter Outline');
+$Config_PartType_Chapter:  (outlineTitle: (en: 'Chapter Outline'));
 $Config_PartType_Equation: (moveTo: $AREA_NONE, resetAt: $RESET_CHAPTER, numberAt: $NUMBER_NONE, titleContent: $_equationNumber, excludeNumberingInClassName: 'section-summary');
 $Config_PartType_Solution: (moveTo: $AREA_TRASH_HALF, );
 

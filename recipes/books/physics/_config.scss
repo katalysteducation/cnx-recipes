@@ -31,12 +31,12 @@
 
   Style guide: book.2-composite.problems
 */
-$PhysicsPageKeyTerms           : (className: "glossary",              clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt", name: "Glossary");
-$PhysicsPageSummary            : (className: "section-summary",       clusterBy: $CLUSTER_SECTION, name: "Section Summary");
-$PhysicsPageConceptualQuestions: (className: "conceptual-questions",  clusterBy: $CLUSTER_SECTION, name: "Conceptual Questions");
-$PhysicsPageProblems           : (className: "problems-exercises",    clusterBy: $CLUSTER_SECTION, name: "Problems & Exercises");
+$PhysicsPageKeyTerms           : (className: "glossary",              clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt", name: (en: "Glossary"));
+$PhysicsPageSummary            : (className: "section-summary",       clusterBy: $CLUSTER_SECTION, name: (en: "Section Summary"));
+$PhysicsPageConceptualQuestions: (className: "conceptual-questions",  clusterBy: $CLUSTER_SECTION, name: (en: "Conceptual Questions"));
+$PhysicsPageProblems           : (className: "problems-exercises",    clusterBy: $CLUSTER_SECTION, name: (en: "Problems & Exercises"));
 
-$PhysicsPageIndex              : (className: "index",                 clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX, name: "Index");
+$PhysicsPageIndex              : (className: "index",                 clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX, name: (en: "Index"));
 
 $Config_ChapterCompositePages: (
   $PhysicsPageKeyTerms,
@@ -54,12 +54,12 @@ $Config_BookCompositePages: (
 //unfortunately a base obj cannot be created for all Content because it would make the order of the keys static
 //when they need to be able to be in any order because of possible changes in titling order between books
 //Usage Note: key: class of the containing span, value: text that will go inside span
-$Config_PartType_Chapter_TitleContent : (os-number: counter(chapter), os-divider: " ");
-$Config_PartType_Section_TitleContent : (os-number: counter(chapter) "." counter(section), os-divider: " ");
-$_exerciseTitleContent       : (os-number: counter(exercise));
-$_exampleTitleContent        : (os-title-label: "Example ", os-number: counter(chapter) "." counter(example), os-divider: " ");
-$_exampleSolutionTitleContent: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example));
-$_equationTitleContent       : (os-number: counter(chapter) "." counter(equation));
+$Config_PartType_Chapter_TitleContent : (en: (os-number: counter(chapter), os-divider: " "));
+$Config_PartType_Section_TitleContent : (en: (os-number: counter(chapter) "." counter(section), os-divider: " "));
+$_exerciseTitleContent       : (en: (os-number: counter(exercise)));
+$_exampleTitleContent        : (en: (os-title-label: "Example ", os-number: counter(chapter) "." counter(example), os-divider: " "));
+$_exampleSolutionTitleContent: (en: (os-title-label: "Solution ", os-number: counter(chapter) "." counter(example)));
+$_equationTitleContent       : (en: (os-number: counter(chapter) "." counter(equation)));
 /*==========================================================
   PHYSICS CONFIG
 ==========================================================*/
@@ -88,7 +88,7 @@ $Config_UnnumberedEquations: (
   (contextSelector: 'section.section-summary', childSelector: '[data-type="equation"]'),
 );
 
-$Config_PartType_Chapter:  (outlineTitle: 'Chapter Outline', hasLearningObjectives: true);
+$Config_PartType_Chapter:  (outlineTitle: (en: 'Chapter Outline'), hasLearningObjectives: true);
 // TODO: Is this a mistake; should we be numbering after the move?
 $Config_PartType_Equation: (moveTo: $AREA_NONE, titleContent: $_equationTitleContent, numberAt: $NUMBER_BEFORE_MOVE);
 $Config_PartType_Exercise: (moveTo: $AREA_EOC, resetAt: $RESET_COMPOSITE_PAGE,  numberAt: $NUMBER_BEFORE_MOVE, titleContent: $_exerciseTitleContent);

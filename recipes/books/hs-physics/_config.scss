@@ -79,10 +79,10 @@
   Style guide: book.2-composite.performance
 */
 $_chapterReviewChildPages: (
-  (className: "concept",                     clusterBy: $CLUSTER_SECTION, name: "Concept Items"),
-  (className: "critical-thinking",           clusterBy: $CLUSTER_SECTION, name: "Critical Thinking Items"),
-  (className: "ost-chapter-review.problem",  clusterBy: $CLUSTER_SECTION, name: "Problems"), // TODO: Change `source:` to `selector:` because this part is unclear,
-  (className: "performance",                 clusterBy: $CLUSTER_SECTION, name: "Performance Task"),
+  (className: "concept",                     clusterBy: $CLUSTER_SECTION, name: (en: "Concept Items")),
+  (className: "critical-thinking",           clusterBy: $CLUSTER_SECTION, name: (en: "Critical Thinking Items")),
+  (className: "ost-chapter-review.problem",  clusterBy: $CLUSTER_SECTION, name: (en: "Problems")), // TODO: Change `source:` to `selector:` because this part is unclear,
+  (className: "performance",                 clusterBy: $CLUSTER_SECTION, name: (en: "Performance Task")),
 );
 
 
@@ -126,24 +126,24 @@ $_chapterReviewChildPages: (
   Style guide: book.2-composite.extendedresponse
 */
 $_testPrepChildPages: (
-  (className: "multiple-choice",   clusterBy: $CLUSTER_SECTION, name: "Multiple Choice"),
-  (className: "short-answer",      clusterBy: $CLUSTER_SECTION, name: "Short Answer"),
-  (className: "extended-response", clusterBy: $CLUSTER_SECTION, name: "Extended Response"),
+  (className: "multiple-choice",   clusterBy: $CLUSTER_SECTION, name: (en: "Multiple Choice")),
+  (className: "short-answer",      clusterBy: $CLUSTER_SECTION, name: (en: "Short Answer")),
+  (className: "extended-response", clusterBy: $CLUSTER_SECTION, name: (en: "Extended Response")),
 );
 
 
 $Config_ChapterCompositePages: (
-  (className: "glossary",       clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt", name: "Key Terms"),
-  (className: "summary",        clusterBy: $CLUSTER_NONE, sectionSeparated: false, name: "Section Summary"),
-  (className: "key-equations",  clusterBy: $CLUSTER_NONE, sectionSeparated: false, name: "Key Equations"),
+  (className: "glossary",       clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_GLOSSARY, sortBy: "xhtml|dl > xhtml|dt", name: (en: "Key Terms")),
+  (className: "summary",        clusterBy: $CLUSTER_NONE, sectionSeparated: false, name: (en: "Section Summary")),
+  (className: "key-equations",  clusterBy: $CLUSTER_NONE, sectionSeparated: false, name: (en: "Key Equations")),
 
   // compoundComposite pages:
-  (className: "chapter-review", clusterBy: $CLUSTER_NONE, childPages: $_chapterReviewChildPages,  name: "Chapter Review"), // TODO rename contains to childComposites or something easy to search for
-  (className: "test-prep",      clusterBy: $CLUSTER_NONE, childPages: $_testPrepChildPages,       name: "Test Prep"),
+  (className: "chapter-review", clusterBy: $CLUSTER_NONE, childPages: $_chapterReviewChildPages,  name: (en: "Chapter Review")), // TODO rename contains to childComposites or something easy to search for
+  (className: "test-prep",      clusterBy: $CLUSTER_NONE, childPages: $_testPrepChildPages,       name: (en: "Test Prep")),
 );
 
 $Config_BookCompositePages: (
-  (className: "index",          clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX, name: "Index"),
+  (className: "index",          clusterBy: $CLUSTER_NONE, specialPageType: $PAGE_INDEX, name: (en: "Index")),
 );
 
 /*==========================================================
@@ -152,8 +152,8 @@ $Config_BookCompositePages: (
 //unfortunately a base obj cannot be created for all Content because it would make the order of the keys static
 //when they need to be able to be in any order because of possible changes in titling order between books
 //Usage Note: key: class of the containing span, value: text that will go inside span
-$_exerciseTitleContent: (os-divider: ". ", os-number: counter(exercise)); // TODO: Remove this space?
-$_equationNumber      : (os-number: counter(chapter) "." counter(equation));
+$_exerciseTitleContent: (en: (os-divider: ". ", os-number: counter(exercise))); // TODO: Remove this space?
+$_equationNumber      : (en: (os-number: counter(chapter) "." counter(equation)));
 /*==========================================================
   HIGH SCHOOL PHYSICS CONFIG
 ==========================================================*/
@@ -288,20 +288,20 @@ $Config_SetFigureCaption: (captionType: $CAPTION_FIGURE, defaultContainer: figca
   Style guide: page.note.virtual-physics
 */
 $Config_Notes: (
-  (className: 'os-teacher',                labelText: "Teacher Support"),
-  (className: 'boundless-physics',         labelText: "Boundless Physics"),
-  (className: 'learning-objectives',       labelText: "Section Learning Objectives", replaceHeader: true),
-  (className: 'ost-teacher-demonstration', labelText: "Teacher Demonstration"),
-  (className: 'ost-misconception',         labelText: "Misconception Alert"),
-  (className: 'grasp-check',               labelText: "Grasp Check"), /*Grasp check does not seem to be an actual note, but an excercise*/
-  (className: 'snap-lab',                  labelText: "Snap Lab"),
-  (className: 'worked-example',            labelText: "Worked Example"),
-  (className: 'tips-for-success',          labelText: "Tips For Success"),
-  (className: 'work-in-physics',           labelText: "Work In Physics"),
-  (className: 'fun-in-physics',            labelText: "Fun In Physics"),
-  (className: 'links-to-physics',          labelText: "Links To Physics"),
-  (className: 'watch-physics',             labelText: "Watch Physics"),
-  (className: 'virtual-physics',           labelText: "Virtual Physics"),
+  (className: 'os-teacher',                labelText: (en: "Teacher Support")),
+  (className: 'boundless-physics',         labelText: (en: "Boundless Physics")),
+  (className: 'learning-objectives',       labelText: (en: "Section Learning Objectives", replaceHeader: true)),
+  (className: 'ost-teacher-demonstration', labelText: (en: "Teacher Demonstration")),
+  (className: 'ost-misconception',         labelText: (en: "Misconception Alert")),
+  (className: 'grasp-check',               labelText: (en: "Grasp Check")), /*Grasp check does not seem to be an actual note, but an excercise*/
+  (className: 'snap-lab',                  labelText: (en: "Snap Lab")),
+  (className: 'worked-example',            labelText: (en: "Worked Example")),
+  (className: 'tips-for-success',          labelText: (en: "Tips For Success")),
+  (className: 'work-in-physics',           labelText: (en: "Work In Physics")),
+  (className: 'fun-in-physics',            labelText: (en: "Fun In Physics")),
+  (className: 'links-to-physics',          labelText: (en: "Links To Physics")),
+  (className: 'watch-physics',             labelText: (en: "Watch Physics")),
+  (className: 'virtual-physics',           labelText: (en: "Virtual Physics")),
 );
 
 /*
