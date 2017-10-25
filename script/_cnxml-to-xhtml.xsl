@@ -17,7 +17,7 @@
         <xsl:apply-templates select="node()"/>
       </xsl:when>
       <xsl:otherwise>
-        <html>
+        <html xml:lang="en">
           <body>
             <!-- In order to be technically well-formed these elements would need to be added as well
             <div data-type="metadata">
@@ -118,6 +118,23 @@
   <!-- Unwrap the specially-marked root element -->
   <xsl:template match="c:hack-root" priority="1">
     <xsl:apply-templates select="node()"/>
+  </xsl:template>
+
+  <!-- Ensure <html> has xml:lang -->
+  <xsl:template match="h:html">
+    <xsl:attribute name="xml:lang">
+      <xsl:choose>
+        <xsl:when test="@xml:lang">
+          <xsl:value-of select="@xml:lang"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:text>en</xsl:text>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
   </xsl:template>
 
   <!-- Copy all the HTML elements in the original file -->
